@@ -3,6 +3,7 @@ package tn.esprit.autoloc.Entities;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "client")
@@ -33,4 +34,7 @@ public class Client {
 
     @Column(nullable = false)
     private LocalDate dateInscription;
+
+    @OneToMany(mappedBy = "client")
+    private List<Reservation> reservations;
 }

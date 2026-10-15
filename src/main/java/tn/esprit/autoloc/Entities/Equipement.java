@@ -2,6 +2,7 @@ package tn.esprit.autoloc.Entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
 
 @Entity
 @Table(name = "equipement")
@@ -17,4 +18,6 @@ public class Equipement {
 
     @Column(nullable = false, length = 100)
     private String libelle;
+    @ManyToMany(mappedBy = "equipements")
+    private List<Vehicules> vehicules;
 }

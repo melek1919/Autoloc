@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.math.BigDecimal;
+import java.util.List;
 @Entity
 @Table(name = "vehicule")
 @Getter
@@ -29,4 +30,21 @@ public class Vehicules {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatutVehicule statut;
+    @ManyToOne
+    @JoinColumn(name = "id_agence")
+    private Agence agence;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Maintenance> maintenances;
+
+    @ManyToMany
+    @JoinTable(
+            name = "vehicule_equipement",
+            joinColumns = @JoinColumn(name = "id_vehicule"),
+            inverseJoinColumns = @JoinColumn(name = "id_equipement")
+    )
+    private List<Equipement> equipements;
+
+    @OneToMany(mappedBy = "vehicule")
+    private List<Reservation> reservations;
 }

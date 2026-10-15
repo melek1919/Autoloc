@@ -1,8 +1,8 @@
 package tn.esprit.autoloc.Entities;
 
 import jakarta.persistence.*;
+import java.util.List;
 import lombok.*;
-
 @Entity
 @Table(name = "agence")
 @Getter
@@ -26,4 +26,8 @@ public class Agence {
 
     @Column(nullable = false, length = 20)
     private String telephone;
+    @OneToMany(mappedBy ="agence")
+    private List<Employe> employes;
+    @OneToMany(mappedBy ="agence")
+    private List<Vehicules> vehicules;
 }
